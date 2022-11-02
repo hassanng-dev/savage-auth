@@ -1,6 +1,8 @@
 // config/database.js
 module.exports = {
 
-    'url' : 'mongodb+srv://demo:demo@cluster0.q2ojb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
-    'dbName': 'demo'
+    'url' : 'mongodb+srv://HassanNgDev:Has0424686!@cluster0.fpl4oh8.mongodb.net/savage?retryWrites=true&w=majority', 
+    'dbName': 'savage'
+
+    
 };

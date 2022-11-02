@@ -20,7 +20,9 @@ module.exports = function(app, passport, db) {
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
-        req.logout();
+        req.logout(() => {
+          console.log('User has logged out!')
+        });
         res.redirect('/');
     });
 
@@ -38,7 +40,9 @@ module.exports = function(app, passport, db) {
       db.collection('messages')
       .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
         $set: {
-          thumbUp:req.body.thumbUp + 1
+          thumbUp:req.body.thumbUp + 1,
+          
+          
         }
       }, {
         sort: {_id: -1},
@@ -48,6 +52,29 @@ module.exports = function(app, passport, db) {
         res.send(result)
       })
     })
+
+    // app.post('/messages', (req, res) => {
+    //   db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
+    //     if (err) return console.log(err)
+    //     console.log('saved to database')
+    //     res.redirect('/profile')
+    //   })
+    // })
+
+    // app.put('/thumbdown', (req, res) => {
+    //   db.collection('messages')
+    //   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
+    //     $set: {
+    //       thumbUp:req.body.thumbDown + 1 
+    //     }
+    //   }, {
+    //     sort: {_id: -1},
+    //     upsert: true
+    //   }, (err, result) => {
+    //     if (err) return res.send(err)
+    //     res.send(result)
+    //   })
+    // })
 
     app.delete('/messages', (req, res) => {
       db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {

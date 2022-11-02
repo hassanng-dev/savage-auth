@@ -7,14 +7,18 @@ var app      = express();
 var port     = process.env.PORT || 8080;
 const MongoClient = require('mongodb').MongoClient
 var mongoose = require('mongoose');
+//handles users authentication
 var passport = require('passport');
 var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
+//stay logged in
 var cookieParser = require('cookie-parser');
+//get info from the client
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+//connection to our database
 var configDB = require('./config/database.js');
 
 var db
